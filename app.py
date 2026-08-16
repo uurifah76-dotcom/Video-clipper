@@ -7,7 +7,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# 2. CSS KUSTOM - TEMA BIRU KHAS MALANG & UI BERSIH TANPA KOTAK KOSONG
+# 2. CSS KUSTOM - TEMA BIRU KHAS MALANG & UI BERSIH
 st.markdown("""
     <style>
     /* Tema Biru Khas Malang (Navy Gelap & Biru Arema Clean) */
@@ -23,7 +23,7 @@ st.markdown("""
         border-bottom: 1px solid #1d3557;
     }
     
-    /* Kartu Konten Kustom yang Bersih & Rapi */
+    /* Kartu Konten Kustom khusus untuk Pilar & Profil */
     .card-box {
         background-color: #1c2541;
         border: 1px solid #3a506b;
@@ -75,7 +75,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Hero Section (Judul & Tagline Orisinal)
+# Hero Section (Judul & Tagline)
 st.markdown(
     "<h1 style='text-align: center; font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; color: #ffffff; line-height: 1.3;'>"
     "Ekstraksi Konten Sinematik<br>Dari Video Panjang Menjadi <span style='color: #60a5fa; font-style: italic;'>Reels Daya Tarik Tinggi</span>"
@@ -84,39 +84,33 @@ st.markdown(
 )
 
 st.markdown(
-    "<p style='text-align: center; color: #93c5fd; font-size: 1rem; margin-top: 1rem; margin-bottom: 2rem;'>"
+    "<p style='text-align: center; color: #93c5fd; font-size: 1rem; margin-top: 1rem; margin-bottom: 2.5rem;'>"
     "Sistem kecerdasan buatan otonom kami memindai durasi penuh, mengidentifikasi segmen paling bernilai tinggi, "
     "serta meraciknya dalam format vertikal siap edar."
     "</p>", 
     unsafe_allow_html=True
 )
 
-# Area Input Tautan dalam Panel Rapi (Tanpa kotak kosong di atasnya, teks ramah & tidak overclaim)
-st.markdown('<div class="card-box">', unsafe_allow_html=True)
-st.markdown(
-    "<p style='color: #93c5fd; font-size: 0.9rem; margin-bottom: 0.8rem; text-align: center;'>"
-    "💡 Platform baru dalam tahap pengembangan awal. Silakan masukkan tautan video untuk mencoba pratinjau sistem kami."
-    "</p>",
-    unsafe_allow_html=True
-)
+# Area Input Tautan Bersih Tanpa Kotak Kosong
 url_input = st.text_input("Tautan Sumber Media (YouTube URL)", placeholder="https://www.youtube.com/watch?v=...")
 st.markdown("<br>", unsafe_allow_html=True)
+
 if st.button("✨ Eksekusi Analisis Otonom"):
     if url_input:
         st.success("Mesin neural sedang memproses stream video...")
     else:
         st.error("Harap masukkan tautan video yang valid pada kolom di atas.")
+
 st.markdown(
-    "<p style='text-align: center; color: #60a5fa; font-size: 0.85rem; margin-top: 1rem;'>"
-    "Akses uji coba terbuka • Dikembangkan oleh PT Paidi.ai Group (Malang)"
+    "<p style='text-align: center; color: #60a5fa; font-size: 0.85rem; margin-top: 1rem; margin-bottom: 3rem;'>"
+    "Pratinjau sistem rintisan awal • Dikembangkan di Malang, Indonesia"
     "</p>", 
     unsafe_allow_html=True
 )
-st.markdown('</div>', unsafe_allow_html=True)
 
 
 # Bagian Alur Kerja (3 Pilar Sistem)
-st.markdown("<br><h2 style='text-align: center; font-weight: 800; color: #ffffff; font-size: 1.5rem;'>Arsitektur 3 Langkah Kerja</h2><br>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; font-weight: 800; color: #ffffff; font-size: 1.5rem; margin-bottom: 1.5rem;'>Arsitektur 3 Langkah Kerja</h2>", unsafe_allow_html=True)
 
 col_a, col_b, col_c = st.columns(3)
 with col_a:

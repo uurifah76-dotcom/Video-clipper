@@ -7,7 +7,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# 2. CSS KUSTOM - TEMA BIRU KHAS MALANG & UI BERSIH
+# 2. CSS KUSTOM - TEMA BIRU KHAS MALANG & UI BERSIH TANPA KOTAK KOSONG
 st.markdown("""
     <style>
     /* Tema Biru Khas Malang (Navy Gelap & Biru Arema Clean) */
@@ -33,19 +33,6 @@ st.markdown("""
         box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.4);
     }
     
-    /* Badge Slogan Atas Input */
-    .slogan-badge {
-        background: rgba(59, 130, 246, 0.15);
-        border: 1px solid #3b82f6;
-        color: #93c5fd;
-        padding: 0.6rem 1rem;
-        border-radius: 12px;
-        text-align: center;
-        font-size: 0.9rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-    
     /* Tombol Interaktif */
     div.stButton > button {
         background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
@@ -65,8 +52,8 @@ st.markdown("""
         box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
     }
 
-    /* Footer Korporat Aman Tanpa HTML Bocor */
-    .footer-container {
+    /* Footer Korporat Aman */
+    .footer-box {
         background-color: #060913;
         border-top: 1px solid #1d3557;
         padding: 2.5rem 1.5rem 2rem 1.5rem;
@@ -104,34 +91,28 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Area Input Tautan dengan Panel & Slogan Pengisi (Menghilangkan Kolom Kosong)
-with st.container():
-    st.markdown('<div class="card-box">', unsafe_allow_html=True)
-    
-    # Bagian atas sebelum input link diisi badge/slogan informatif agar tidak kosong
-    st.markdown(
-        '<div class="slogan-badge">'
-        '🚀 <strong>Teknologi Neural V3.2 Aktif:</strong> Pemrosesan Lebih Cepat & Akurasi Klip 99.8%'
-        '</div>', 
-        unsafe_allow_html=True
-    )
-    
-    url_input = st.text_input("Tautan Sumber Media (YouTube URL)", placeholder="https://www.youtube.com/watch?v=...")
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    if st.button("✨ Eksekusi Analisis Otonom"):
-        if url_input:
-            st.success("Mesin neural sedang memproses stream video...")
-        else:
-            st.error("Harap masukkan tautan video yang valid pada kolom di atas.")
-            
-    st.markdown(
-        "<p style='text-align: center; color: #60a5fa; font-size: 0.85rem; margin-top: 1rem;'>"
-        "Akses uji coba terbuka • Didukung oleh PT Paidi.ai Group (Malang)"
-        "</p>", 
-        unsafe_allow_html=True
-    )
-    st.markdown('</div>', unsafe_allow_html=True)
+# Area Input Tautan dalam Panel Rapi (Tanpa kotak kosong di atasnya, teks ramah & tidak overclaim)
+st.markdown('<div class="card-box">', unsafe_allow_html=True)
+st.markdown(
+    "<p style='color: #93c5fd; font-size: 0.9rem; margin-bottom: 0.8rem; text-align: center;'>"
+    "💡 Platform baru dalam tahap pengembangan awal. Silakan masukkan tautan video untuk mencoba pratinjau sistem kami."
+    "</p>",
+    unsafe_allow_html=True
+)
+url_input = st.text_input("Tautan Sumber Media (YouTube URL)", placeholder="https://www.youtube.com/watch?v=...")
+st.markdown("<br>", unsafe_allow_html=True)
+if st.button("✨ Eksekusi Analisis Otonom"):
+    if url_input:
+        st.success("Mesin neural sedang memproses stream video...")
+    else:
+        st.error("Harap masukkan tautan video yang valid pada kolom di atas.")
+st.markdown(
+    "<p style='text-align: center; color: #60a5fa; font-size: 0.85rem; margin-top: 1rem;'>"
+    "Akses uji coba terbuka • Dikembangkan oleh PT Paidi.ai Group (Malang)"
+    "</p>", 
+    unsafe_allow_html=True
+)
+st.markdown('</div>', unsafe_allow_html=True)
 
 
 # Bagian Alur Kerja (3 Pilar Sistem)
@@ -174,9 +155,8 @@ st.markdown(
     "</div>"
     "<h3 style='color: #ffffff; margin-bottom: 0.5rem;'>Halo, saya Usman cip4nky</h3>"
     "<p style='color: #e0f2fe; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;'>"
-    "“Saya mendedikasikan pengembangan Paidi.ai untuk meruntuhkan hambatan produksi media. "
-    "Visi kami sederhana: biarkan teknologi otonom menangani kerumitan teknis, sehingga kreator "
-    "bisa sepenuhnya mendedikasikan energi untuk substansi materi dan kreativitas.”"
+    "“Saya merintis pengembangan Paidi.ai untuk membantu kreator menyederhanakan alur kerja produksi media. "
+    "Sebagai platform baru, kami terus belajar dan bertumbuh bersama komunitas untuk memberikan solusi terbaik.”"
     "</p>"
     "<strong style='color: #ffffff;'>Usman cip4nky</strong> · <em style='color: #60a5fa;'>Founder of Usman cip4nky</em>"
     "<p style='color: #60a5fa; font-size: 0.85rem; margin-top: 0.8rem;'>📍 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139</p>"
@@ -186,48 +166,27 @@ st.markdown(
 )
 
 
-# ================= 4. FOOTER KORPORAT AMAN (MENGGUNAKAN KOLOM NATIVE STREAMLIT) =================
-st.markdown('<div class="footer-container">', unsafe_allow_html=True)
-
-f_col1, f_col2, f_col3 = st.columns(3)
-
-with f_col1:
-    st.markdown("### ⚡ Paidi.ai")
-    st.markdown(
-        "<span style='color: #93c5fd; font-size: 0.9rem;'>Infrastruktur perangkat lunak berbasis kecerdasan buatan terdepan di Indonesia untuk otomatisasi repurposing video jangka panjang.</span>", 
-        unsafe_allow_html=True
-    )
-    st.markdown(
-        "<span style='color: #60a5fa; font-size: 0.85rem;'>🏢 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139<br>📞 083853413171<br>✉️ support@paidi.ai</span>", 
-        unsafe_allow_html=True
-    )
-
-with f_col2:
-    st.markdown("### Eksplorasi")
-    st.markdown(
-        "<span style='color: #93c5fd; font-size: 0.9rem; line-height: 1.8;'>Modul Inti<br>Alur Kerja<br>Skema Lisensi<br>Pusat Bantuan</span>", 
-        unsafe_allow_html=True
-    )
-
-with f_col3:
-    st.markdown("### Sosial Media")
-    st.markdown(
-        "<span style='color: #93c5fd; font-size: 0.9rem; line-height: 1.8;'>TikTok: @Paidi.ai.idn<br>Instagram: @Paidi.ai.idn</span>", 
-        unsafe_allow_html=True
-    )
-    st.markdown("### Regulasi")
-    st.markdown(
-        "<span style='color: #93c5fd; font-size: 0.9rem; line-height: 1.8;'>Kebijakan Privasi<br>Perjanjian Layanan</span>", 
-        unsafe_allow_html=True
-    )
-
-st.markdown("<hr style='border: none; border-top: 1px solid #1d3557; margin: 2rem 0 1rem 0;'>", unsafe_allow_html=True)
+# ================= 4. FOOTER KORPORAT BERSIH & AMAN =================
 st.markdown(
-    "<div style='text-align: center; color: #60a5fa; font-size: 0.85rem;'>"
-    "© 2026 PT Paidi.ai Group. Didirikan 2026. Hak Cipta Dilindungi Undang-Undang.<br>"
-    "Engineered with excellence from Malang, Indonesia."
-    "</div>", 
+    """
+    <div class="footer-box">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <div style="font-size: 1.3rem; font-weight: 900; color: #ffffff; margin-bottom: 0.5rem;">⚡ Paidi.ai</div>
+            <p style="color: #93c5fd; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+                Infrastruktur perangkat lunak rintisan berbasis kecerdasan buatan untuk otomatisasi repurposing video di Indonesia.
+            </p>
+            <p style="color: #60a5fa; font-size: 0.85rem; margin-bottom: 1.5rem;">
+                🏢 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139<br>
+                📞 WhatsApp/Telp: 083853413171 | ✉️ support@paidi.ai<br>
+                📱 TikTok & Instagram: @Paidi.ai.idn
+            </p>
+            <hr style="border: none; border-top: 1px solid #1d3557; margin: 1.5rem 0;">
+            <p style="color: #60a5fa; font-size: 0.85rem; margin: 0;">
+                © 2026 PT Paidi.ai Group. Didirikan 2026. Hak Cipta Dilindungi Undang-Undang.<br>
+                Engineered with excellence from Malang, Indonesia.
+            </p>
+        </div>
+    </div>
+    """,
     unsafe_allow_html=True
 )
-
-st.markdown('</div>', unsafe_allow_html=True)

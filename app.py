@@ -7,7 +7,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# 2. CSS KUSTOM - TEMA BIRU KHAS MALANG & UI BERSIH
+# 2. CSS KUSTOM - TEMA BIRU KHAS MALANG & INPUT GELAP MENYATU
 st.markdown("""
     <style>
     /* Tema Biru Khas Malang (Navy Gelap & Biru Arema Clean) */
@@ -31,6 +31,31 @@ st.markdown("""
         padding: 1.8rem;
         margin-bottom: 1.2rem;
         box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Styling Input Teks agar Menyatu dengan Tema Gelap */
+    div[data-baseweb="input"] {
+        background-color: #1c2541 !important;
+        border: 1px solid #3a506b !important;
+        border-radius: 12px !important;
+    }
+    div[data-baseweb="input"] input {
+        color: #e0f2fe !important;
+        background-color: transparent !important;
+    }
+    
+    /* Styling Selectbox agar Menyatu dengan Tema Gelap */
+    div[data-baseweb="select"] > div {
+        background-color: #1c2541 !important;
+        color: #e0f2fe !important;
+        border-radius: 12px !important;
+        border: 1px solid #3a506b !important;
+    }
+    
+    /* Label warna teks input/select agar kontras & jelas */
+    .stTextInput label, .stSelectbox label {
+        color: #93c5fd !important;
+        font-weight: 500;
     }
     
     /* Tombol Interaktif */
@@ -110,7 +135,7 @@ if menu_pilihan == "Beranda & Studio":
     url_input = st.text_input("Tautan Sumber Media (YouTube URL)", placeholder="https://www.youtube.com/watch?v=...")
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Panel Kustomisasi Template & Ekstraksi (Lengkap sesuai permintaan)
+    # Panel Kustomisasi Template & Ekstraksi
     with st.expander("⚙️ Pengaturan Template & Kustomisasi Ekstraksi", expanded=True):
         col_opt1, col_opt2 = st.columns(2)
         with col_opt1:
@@ -264,4 +289,4 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True
-        )
+    )

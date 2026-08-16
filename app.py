@@ -19,6 +19,14 @@ with menu_beranda:
     with st.sidebar:
         st.header("⚙️ Pengaturan Pro")
         st.write("Fitur ini akan dikunci untuk pengguna berbayar.")
+        
+        # Tambahan Pilihan Durasi Klip
+        durasi_klip = st.selectbox("Durasi Klip", [
+            "15s - 30s (Short & Punchy)", 
+            "30s - 90s (Standard Viral)", 
+            "90s - 3m (Deep Dive)"
+        ])
+        
         template_sub = st.selectbox("Template Subtitle", ["Basic", "Neon Pop", "Minimalist", "Bold Color"], disabled=True)
         template_hook = st.selectbox("Template Visual Hook", ["None", "Split Screen", "Dynamic Zoom"], disabled=True)
         rasio = st.selectbox("Rasio Aspek", ["9:16 (TikTok/Reels)", "16:9 (YouTube)", "1:1 (Square)"])
@@ -35,7 +43,7 @@ with menu_beranda:
     if st.button("Mulai Proses Clipping"):
         if url:
             st.info(f"Proses dimulai untuk: {url}")
-            st.write(f"Rasio: {rasio} | Resolusi: {resolusi}")
+            st.write(f"Durasi Target: {durasi_klip} | Rasio: {rasio} | Resolusi: {resolusi}")
             st.warning("Mesin AI pemotong video sedang dalam tahap integrasi.")
         else:
             st.error("Masukkan link terlebih dahulu!")

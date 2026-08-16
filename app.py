@@ -1,16 +1,21 @@
 import streamlit as st
-
-st.set_page_config(page_title="AI Video Clipper", page_icon="🎬")
+import yt_dlp
+import os
 
 st.title("🎬 AI Video Clipper")
-st.write("Masukkan link video untuk memproses golden moments secara otomatis.")
 
-video_url = st.text_input("Tempel Link Video di sini:")
+url = st.text_input("Tempel Link Video:")
 
-if st.button("Mulai Clipping"):
-    if video_url:
-        st.info(f"Menerima link: {video_url}")
-        st.warning("Sedang memproses... (Fitur AI sedang disiapkan)")
-        # Di sini nanti kita akan tambahkan kode AI-nya
+if st.button("Download Video"):
+    if url:
+        st.write("Sedang mengunduh video...")
+        try:
+            ydl_opts = {'format': 'best', 'outtmpl': 'video.mp4'}
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([url])
+            st.success("Video berhasil diunduh!")
+            st.video("video.mp4")
+        except Exception as e:
+            st.error(f"Gagal: {e}")
     else:
-        st.error("Silakan masukkan link video terlebih dahulu!")
+        st.error("Masukkan link!")

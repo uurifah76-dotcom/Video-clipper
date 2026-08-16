@@ -69,22 +69,6 @@ st.markdown("""
         box-shadow: 0 0 12px rgba(47, 129, 247, 0.4);
     }
 
-    /* Bagian Company Profile / Footer Korporat */
-    .corporate-footer-section {
-        background-color: var(--card-bg);
-        padding: 2.5rem;
-        border-radius: 12px;
-        border: 1px solid var(--border-color);
-        margin-top: 4rem;
-    }
-    
-    .footer-title {
-        color: #ffffff;
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
-
     /* Sembunyikan Menu Bawaan Streamlit */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
@@ -170,34 +154,19 @@ with menu_akun:
     st.markdown('</div>', unsafe_allow_html=True)
 
 
-# ================= 5. BAGIAN PROFIL PERUSAHAAN DI BAWAH (CORPORATE FOOTER) =================
-st.markdown("""
-    <div class="corporate-footer-section">
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
-            <div style="flex: 1; min-width: 250px;">
-                <div class="footer-title">Tentang Perusahaan</div>
-                <p style="color: #8b949e; font-size: 0.95rem; line-height: 1.6;">
-                    <b>PT Clipper Teknologi Indonesia</b> didirikan pada tahun 2026 dengan misi memberdayakan para pembuat konten (*content creators*) dan agensi digital di seluruh dunia melalui solusi teknologi kecerdasan buatan (*AI*) mutakhir untuk efisiensi produksi video vertikal.
-                </p>
-            </div>
-            
-            <div style="flex: 1; min-width: 200px;">
-                <div class="footer-title">Legalitas & Dukungan</div>
-                <p style="color: #8b949e; font-size: 0.95rem; line-height: 1.6;">
-                    • Dukungan Teknis: support@clipperai.studio<br>
-                    • Layanan Mitra Affiliate: partner@clipperai.studio<br>
-                    • Status Server: 100% Operational (Cloud Node)
-                </p>
-            </div>
-            
-            <div style="flex: 1; min-width: 200px;">
-                <div class="footer-title">Kantor Pusat</div>
-                <p style="color: #8b949e; font-size: 0.95rem; line-height: 1.6;">
-                    Sudirman Central Business District (SCBD)<br>
-                    Jakarta Selatan, Indonesia<br>
-                    © 2026 PT Clipper Teknologi Indonesia. All rights reserved.
-                </p>
-            </div>
-        </div>
-    </div>
-""", unsafe_allow_html=True)
+# ================= 5. BAGIAN PROFIL PERUSAHAAN (CORPORATE FOOTER) =================
+st.markdown("---")
+st.markdown("### 🏢 Tentang Perusahaan")
+st.write(
+    "**PT Clipper Teknologi Indonesia** didirikan pada tahun 2026 dengan misi memberdayakan "
+    "para pembuat konten (*content creators*) dan agensi digital di seluruh dunia melalui solusi "
+    "teknologi kecerdasan buatan (*AI*) mutakhir untuk efisiensi produksi video vertikal."
+)
+
+col_f1, col_f2 = st.columns(2)
+with col_f1:
+    st.markdown("**Legalitas & Dukungan:**")
+    st.text("• Dukungan Teknis: support@clipperai.studio\n• Layanan Mitra: partner@clipperai.studio\n• Status Server: 100% Operational")
+with col_f2:
+    st.markdown("**Kantor Pusat:**")
+    st.text("Sudirman Central Business District (SCBD)\nJakarta Selatan, Indonesia\n© 2026 PT Clipper Teknologi Indonesia.")

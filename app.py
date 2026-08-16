@@ -1,4 +1,6 @@
 import streamlit as st
+import os
+import yt_dlp
 
 # 1. PENGATURAN HALAMAN
 st.set_page_config(
@@ -160,11 +162,30 @@ if menu_pilihan == "Beranda & Studio":
 
     if st.button("✨ Eksekusi Analisis Otonom"):
         if url_input:
-            st.success(f"Memproses video dengan mode [{filter_fokus}], estimasi waktu {estimasi_waktu}, dan format {aspek_rasio}...")
-            if "Deteksi Menyeluruh" in filter_fokus:
-                st.info("🤖 AI sedang memindai seluruh segmen video untuk merangkum Potensi Viral, Golden Moment, Edukasi, dan Humor secara bersamaan!")
-            else:
-                st.info(f"🤖 AI sedang memindai video dengan fokus utama pada: {filter_fokus}...")
+            st.info(f"🔄 Menghubungkan ke server YouTube untuk membaca metadata video...")
+            
+            # Menggunakan yt-dlp untuk mendeteksi informasi video secara nyata
+            ydl_opts = {'quiet': True, 'skip_download': True}
+            try:
+                with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                    info_dict = ydl.extract_info(url_input, download=False)
+                    video_title = info_dict.get('title', 'Tidak diketahui')
+                    video_duration = info_dict.get('duration', 0)
+                    channel_name = info_dict.get('uploader', 'Tidak diketahui')
+                
+                st.success(f"✅ Video Berhasil Dideteksi!")
+                st.markdown(f"""
+                <div class="card-box" style="margin-top: 1rem;">
+                    <h4 style="color: #60a5fa; margin-bottom: 0.5rem;">📌 Informasi Metadata Video:</h4>
+                    <p style="color: #e0f2fe; margin: 0.2rem 0;"><strong>Judul:</strong> {video_title}</p>
+                    <p style="color: #e0f2fe; margin: 0.2rem 0;"><strong>Kanal:</strong> {channel_name}</p>
+                    <p style="color: #e0f2fe; margin: 0.2rem 0;"><strong>Durasi Asli:</strong> {video_duration // 60} menit {video_duration % 60} detik</p>
+                    <p style="color: #93c5fd; margin-top: 0.5rem; font-size: 0.9rem;">🤖 AI sedang memproses mode <strong>[{filter_fokus}]</strong> untuk memotong klip dengan format {aspek_rasio}...</p>
+                </div>
+                """, unsafe_allow_html=True)
+                
+            except Exception as e:
+                st.error(f"❌ Gagal membaca tautan YouTube. Pastikan link yang dimasukkan benar dan publik. (Detail: {e})")
         else:
             st.error("Harap masukkan tautan video YouTube yang valid terlebih dahulu.")
 

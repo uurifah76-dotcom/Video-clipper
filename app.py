@@ -145,14 +145,26 @@ if menu_pilihan == "Beranda & Studio":
         with col_opt2:
             resolusi_video = st.selectbox("Resolusi Ekspor", ["1080p (Full HD)", "720p (Standard HD)"])
             estimasi_waktu = st.selectbox("Estimasi Durasi Proses", ["⚡ Kilat (~3-5 Menit)", "🛡️ Standar Teliti (~5-10 Menit)"])
-            filter_fokus = st.selectbox("Fokus Ekstraksi Konten", ["Puncak Emosi / Argumen Kuat", "Humor & Hiburan", "Tutorial / Edukasi"])
+            filter_fokus = st.selectbox(
+                "Fokus Ekstraksi Konten", 
+                [
+                    "🔥 Deteksi Menyeluruh (AI Multi-Analisis Semua Kategori)", 
+                    "🚀 Potensi Viral Tertinggi (Algoritma Hook & Retensi)", 
+                    "⭐ Golden Moment / Puncak Emosi Terbaik", 
+                    "💡 Argumen Kuat / Edukasi Mendalam", 
+                    "😄 Humor & Segmen Menghibur"
+                ]
+            )
 
     st.markdown("<br>", unsafe_allow_html=True)
 
     if st.button("✨ Eksekusi Analisis Otonom"):
         if url_input:
-            st.success(f"Memproses video dengan estimasi waktu {estimasi_waktu} dan format {aspek_rasio}...")
-            st.info("Sistem sedang mengunduh stream, memotong klip sesuai template, dan merender subtitle otomatis.")
+            st.success(f"Memproses video dengan mode [{filter_fokus}], estimasi waktu {estimasi_waktu}, dan format {aspek_rasio}...")
+            if "Deteksi Menyeluruh" in filter_fokus:
+                st.info("🤖 AI sedang memindai seluruh segmen video untuk merangkum Potensi Viral, Golden Moment, Edukasi, dan Humor secara bersamaan!")
+            else:
+                st.info(f"🤖 AI sedang memindai video dengan fokus utama pada: {filter_fokus}...")
         else:
             st.error("Harap masukkan tautan video YouTube yang valid terlebih dahulu.")
 

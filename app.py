@@ -18,6 +18,14 @@ st.markdown("""
         border-radius: 12px;
         margin-bottom: 20px;
     }
+    .promo-banner {
+        background: linear-gradient(135deg, rgba(0, 123, 255, 0.25), rgba(40, 167, 69, 0.25));
+        border: 1px solid rgba(0, 123, 255, 0.5);
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
     .profile-card {
         background: rgba(255, 255, 255, 0.08);
         border: 1px solid rgba(0, 123, 255, 0.4);
@@ -51,10 +59,10 @@ st.sidebar.markdown("**Status Sistem:** 🚀 Rintisan Awal (Early Stage)")
 st.sidebar.markdown("**Kredit Anda:** 5 / 10 Sesi")
 st.sidebar.markdown("📍 Malang, Indonesia")
 
-# 1. Halaman Beranda & Studio (Landing Page Ringkas & Menyatu)
+# 1. Halaman Beranda & Studio (Landing Page Ringkas & Profesional)
 if menu == "Beranda & Studio":
     
-    # --- SLOGAN PROMOSI UTAMA (Langsung Menyatu Tanpa Kotak Pembungkus Atas) ---
+    # --- SLOGAN PROMOSI UTAMA ---
     st.markdown("""
         <div style="text-align: center; margin-bottom: 25px;">
             <h1 style="font-size: 30px; margin-bottom: 8px;">⚡ Paidi.ai Video Studio</h1>
@@ -65,8 +73,17 @@ if menu == "Beranda & Studio":
         </div>
     """, unsafe_allow_html=True)
     
-    # --- PANEL STUDIO UTAMA ---
+    # --- PANEL STUDIO UTAMA (Kotak Kosong Dihapus & Diganti Promo Pengguna Baru) ---
     st.markdown("### 🛠️ Studio Pemrosesan Konten")
+    
+    # Banner Promo Diskon Pengguna Baru (Menggantikan area kosong agar bernilai fungsional)
+    st.markdown("""
+    <div class="promo-banner">
+        <span style="font-size: 14px; font-weight: bold; color: #4da6ff;">🎁 PROMO SPESIAL PENGGUNA BARU:</span>
+        <p style="font-size: 13px; margin: 4px 0 0 0; opacity: 0.95;">Nikmati <strong>Ekstra 5 Sesi Gratis Tambahan</strong> + Diskon 50% untuk peningkatan paket pertama Anda hari ini!</p>
+    </div>
+    """, unsafe_allow_html=True)
+
     with st.container():
         st.markdown('<div class="card">', unsafe_allow_html=True)
         
@@ -113,7 +130,7 @@ if menu == "Beranda & Studio":
         </div>
         """, unsafe_allow_html=True)
 
-    # --- PROFIL FOUNDER (Teks & Posisi Ditengah, Tanpa Logo Lampu, Ada "Founder of") ---
+    # --- PROFIL FOUNDER (Posisi di Tengah, "Founder of" Usman Shidiq) ---
     st.markdown("""
     <div class="profile-card">
         <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=faces" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid #007bff; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto;" alt="Founder">

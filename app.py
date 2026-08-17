@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import subprocess
+import json
 
 # Konfigurasi Halaman
 st.set_page_config(
@@ -9,27 +10,37 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- FUNGSI BACKEND OTOMATISASI CLIPPING YOUTUBE ---
-def process_youtube_clip(youtube_url, start_time="00:00:10", end_time="00:00:40", output_filename="output_clip.mp4"):
-    """
-    Fungsi untuk mengunduh segmen video YouTube dan memotongnya
-    menggunakan yt-dlp dan ffmpeg secara efisien.
-    """
+# --- FUNGSI BACKEND OTOMATISASI CLIPPING (720p & Max 30 Menit) ---
+def check_youtube_duration_and_process(youtube_url, start_time="00:00:10", end_time="00:00:40", output_filename="output_clip.mp4"):
     try:
+        # 1. Cek durasi video via yt-dlp (Maksimal 30 menit / 1800 detik untuk server gratisan)
+        meta_command = [
+            "yt-dlp",
+            "--dump-json",
+            youtube_url
+        ]
+        result = subprocess.run(meta_command, capture_output=True, text=True, check=True)
+        video_info = json.loads(result.stdout)
+        duration_in_seconds = video_info.get("duration", 0)
+
+        MAX_DURATION = 30 * 60  # 30 Menit
+        if duration_in_seconds > MAX_DURATION:
+            return "EXCEEDED_LIMIT"
+
+        # 2. Unduh resolusi 720p (HD) agar jernih dan ramah server
         os.makedirs("/tmp", exist_ok=True)
         temp_input = "/tmp/temp_full_video.mp4"
         output_path = f"/tmp/{output_filename}"
 
-        # 1. Unduh resolusi rendah (360p) untuk menghemat RAM server
         download_command = [
             "yt-dlp",
-            "-f", "best[height<=360]", 
+            "-f", "best[height<=720]", 
             "-o", temp_input,
             youtube_url
         ]
         subprocess.run(download_command, check=True)
 
-        # 2. Potong video menggunakan FFmpeg berdasarkan timestamp
+        # 3. Potong video menggunakan FFmpeg
         ffmpeg_command = [
             "ffmpeg",
             "-y",
@@ -38,7 +49,6 @@ def process_youtube_clip(youtube_url, start_time="00:00:10", end_time="00:00:40"
             "-to", str(end_time),
             "-c:v", "libx264",
             "-c:a", "aac",
-            "-strict", "experimental",
             output_path
         ]
         subprocess.run(ffmpeg_command, check=True)
@@ -46,7 +56,7 @@ def process_youtube_clip(youtube_url, start_time="00:00:10", end_time="00:00:40"
         return output_path
 
     except Exception as e:
-        print(f"Terjadi kesalahan saat memproses video: {e}")
+        print(f"Error: {e}")
         return None
 
 # CSS Kustom untuk Tampilan Elegan & Rata Tengah
@@ -97,7 +107,7 @@ menu = st.sidebar.radio(
 )
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("**Status Sistem:** 🚀 Produksi Aktif")
+st.sidebar.markdown("**Status Sistem:** 🚀 Uji Coba Publik (Beta)")
 st.sidebar.markdown("**Kredit Anda:** 5 / 10 Sesi")
 st.sidebar.markdown("📍 Malang, Indonesia")
 
@@ -133,26 +143,26 @@ if menu == "Beranda & Studio":
         subtitle = st.selectbox("Gaya Subtitle / Headline", ["Dinamis Alex Hormozi Style", "Minimalis Clean", "Tanpa Subtitle"])
         rasio = st.selectbox("Rasio Aspek Video", ["9:16 (Vertical Reels/TikTok)", "1:1 (Square)", "16:9 (Horizontal)"])
     with col2:
-        resolusi = st.selectbox("Resolusi Ekspor", ["1080p (Full HD)", "720p (HD)"])
+        resolusi = st.selectbox("Resolusi Ekspor", ["720p HD (Optimal & Jernih)", "1080p (Pro)"])
         estimasi = st.selectbox("Estimasi Durasi Proses", ["⚡ Kilat (~3-5 Menit)", "Standard"])
         fokus = st.selectbox("Fokus Ekstraksi Konten", ["🔥 Deteksi Menyeluruh (AI Multi-Analisis)", "Fokus Hook Utama"])
     
     if st.button("✨ Eksekusi Analisis Otonom", type="primary"):
         if link:
-            with st.spinner("🚀 Sistem AI sedang memindai dan memotong klip terbaik dari YouTube untuk Anda..."):
-                # Memanggil fungsi pemrosesan video nyata
-                hasil_klip = process_youtube_clip(link, start_time="00:00:10", end_time="00:00:40")
+            with st.spinner("🚀 Sistem AI sedang memindai dan memotong klip HD (720p) terbaik dari YouTube..."):
+                hasil_klip = check_youtube_duration_and_process(link, start_time="00:00:10", end_time="00:00:40")
                 
-                if hasil_klip and os.path.exists(hasil_klip):
-                    st.success("🎉 Klip video sinematik Anda berhasil dibuat!")
+                if hasil_klip == "EXCEEDED_LIMIT":
+                    st.warning("⚠️ **Batas Durasi Terlampaui!** Untuk versi uji coba publik, maksimal durasi video adalah 30 menit. Silakan upgrade ke paket Pro untuk memproses video tanpa batas durasi!")
+                elif hasil_klip and os.path.exists(hasil_klip):
+                    st.success("🎉 Klip video HD (720p) Anda berhasil dibuat!")
                     st.video(hasil_klip)
                     
-                    # Tombol Unduh
                     with open(hasil_klip, "rb") as file:
                         st.download_button(
-                            label="📥 Unduh Klip Hasil (MP4)",
+                            label="📥 Unduh Klip HD (MP4)",
                             data=file,
-                            file_name="paidi_ai_reels_hasil.mp4",
+                            file_name="paidi_ai_reels_720p.mp4",
                             mime="video/mp4"
                         )
                 else:
@@ -167,14 +177,14 @@ if menu == "Beranda & Studio":
         st.markdown("""
         <div class="card">
             <h4>1. Ingest Data</h4>
-            <p style="font-size: 14px; opacity: 0.8; margin-bottom: 0;">Kirimkan tautan arsip video berdurasi panjang ke dalam sistem komputasi cloud kami secara aman dan cepat.</p>
+            <p style="font-size: 14px; opacity: 0.8; margin-bottom: 0;">Kirimkan tautan arsip video berdurasi maksimal 30 menit ke dalam sistem komputasi cloud kami secara aman.</p>
         </div>
         """, unsafe_allow_html=True)
     with col_f2:
         st.markdown("""
         <div class="card">
             <h4>2. Deep Scanning</h4>
-            <p style="font-size: 14px; opacity: 0.8; margin-bottom: 0;">Algoritma machine learning menyeleksi puncak impresi, emosi, dan inti narasi terbaik secara presisi.</p>
+            <p style="font-size: 14px; opacity: 0.8; margin-bottom: 0;">Algoritma machine learning menyeleksi puncak impresi, emosi, dan inti narasi terbaik secara presisi dalam format HD.</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -185,8 +195,8 @@ if menu == "Beranda & Studio":
         <h3 style="margin: 0; font-size: 18px; text-align: center;">Usman Shidiq</h3>
         <p style="color: #4da6ff; font-size: 13px; margin-top: 2px; margin-bottom: 12px; text-align: center;">Founder of Paidi.ai</p>
         <p style="font-size: 14px; opacity: 0.9; line-height: 1.6; text-align: center; margin-bottom: 8px;">
-            "Paidi.ai lahir dari sebuah keresahan pribadi melihat betapa melelahkannya proses manual memotong video podcast atau rekaman panjang menjadi klip-klip pendek vertikal yang siap viral. Waktu kreatif kreator seringkali habis di ruang edit yang repetitif.<br><br>
-            Saat ini, <strong>Paidi.ai masih berada di tahap rintisan awal (early-stage startup)</strong>, di mana kami terus merintis, belajar, dan berinovasi bersama komunitas kreator di Indonesia untuk menghadirkan solusi teknologi otomasi video yang efisien, mudah digunakan, dan terjangkau."
+            "Paidi.ai lahir dari sebuah keresahan pribadi melihat betapa melelahkannya proses manual memotong video podcast atau rekaman panjang menjadi klip-klip pendek vertikal yang siap viral.<br><br>
+            Saat ini, <strong>Paidi.ai berada di tahap uji coba publik (Beta)</strong>, di mana kami terus menguji performa dan berinovasi bersama komunitas kreator di Indonesia untuk menghadirkan solusi teknologi otomasi video yang efisien dan berkualitas."
         </p>
     </div>
     """, unsafe_allow_html=True)

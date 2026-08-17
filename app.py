@@ -1,13 +1,13 @@
 import streamlit as st
 
-# Konfigurasi Halaman (Lebar penuh agar layout dua kolom tertata rapi)
+# Konfigurasi Halaman (Lebar agar layout dua kolom tertata pas)
 st.set_page_config(
     page_title="Paidi.ai - AI Video Studio",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# CSS Kustom untuk Kartu Transparan dan Tampilan Khas Paidi.ai
+# CSS Kustom agar kartu transparan dan elegan sesuai desain asli
 st.markdown("""
     <style>
     .stApp { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: white; }
@@ -42,34 +42,34 @@ st.sidebar.markdown("**Status Sistem:** Rintisan Awal")
 st.sidebar.markdown("**Kredit Anda:** 5 / 10 Sesi")
 st.sidebar.markdown("📍 Malang, Indonesia")
 
-# Konten Halaman Beranda & Studio (Layout Dua Kolom Persis Seperti Desain Asli)
+# Konten Beranda & Studio (Struktur Dua Kolom Persis Seperti Asli)
 if menu == "Beranda & Studio":
-    # Membuat dua kolom utama
     col_kiri, col_kanan = st.columns([1.1, 0.9], gap="large")
     
     with col_kiri:
         st.markdown("### ⚡ Paidi.ai")
         st.markdown("---")
         
-        # Kartu Profil & Sambutan Founder di Sisi Kiri Atas
+        # Kartu Sambutan & Profil Founder di Kiri Atas
         st.markdown("""
         <div class="card">
             <h4>Halo, saya Usman cip4nky</h4>
             <p style="font-size: 14px; opacity: 0.9;">"Saya merintis pengembangan Paidi.ai untuk membantu kreator menyederhanakan alur kerja produksi media. Sebagai platform baru, kami terus belajar dan bertumbuh bersama komunitas untuk memberikan solusi terbaik."</p>
             <p><strong>Usman cip4nky</strong> · <span style="font-size: 13px; opacity: 0.8;">Founder of Usman cip4nky</span></p>
             <hr style="border-color: rgba(255,255,255,0.1);">
-            <p style="font-size: 12px; opacity: 0.8;">
+            <p style="font-size: 12px; opacity: 0.8; margin-bottom:0;">
                 📍 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139
             </p>
         </div>
         """, unsafe_allow_html=True)
         
-        # Panel Input dan Pengaturan Studio
+        # Form Input YouTube URL
         st.markdown("#### 🔗 Tautan Sumber Media (YouTube URL)")
         link = st.text_input("YouTube URL", placeholder="https://www.youtube.com/watch?v=...", label_visibility="collapsed")
         
         st.markdown("<br>", unsafe_allow_html=True)
         
+        # Pengaturan Studio
         durasi = st.selectbox("Durasi Target Klip", ["Pendek (15-30 detik)", "Standar (30-60 detik)"])
         subtitle = st.selectbox("Gaya Subtitle / Headline", ["Dinamis Alex Hormozi Style", "Minimalis Clean", "Tanpa Subtitle"])
         rasio = st.selectbox("Rasio Aspek Video", ["9:16 (Vertical Reels/TikTok)", "1:1 (Square)", "16:9 (Horizontal)"])
@@ -86,7 +86,7 @@ if menu == "Beranda & Studio":
                 st.warning("⚠️ Silakan masukkan tautan YouTube terlebih dahulu!")
 
     with col_kanan:
-        # Sisi Kanan: Kartu Informasi Fitur Unggulan (Persis Seperti Tampilan Video/Screenshot)
+        # Sisi Kanan: Kartu Informasi Fitur Unggulan (Persis Seperti Gambar Asli)
         st.markdown("""
         <div class="card" style="text-align: center; background: rgba(0, 123, 255, 0.1);">
             <h2 style="margin-bottom: 10px;">Ekstraksi Konten Sinematik</h2>

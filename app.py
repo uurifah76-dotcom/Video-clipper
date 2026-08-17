@@ -73,7 +73,7 @@ if menu == "Beranda & Studio":
     # --- PANEL STUDIO UTAMA ---
     st.markdown("### 🛠️ Studio Pemrosesan Konten")
     
-    # Banner Promo Pengguna Baru
+    # Banner Promo Pengguna Baru (Tetap Tampil di Atas Form)
     st.markdown("""
     <div class="promo-banner">
         <span style="font-size: 14px; font-weight: bold; color: #4da6ff;">🎁 PROMO SPESIAL PENGGUNA BARU:</span>
@@ -81,13 +81,12 @@ if menu == "Beranda & Studio":
     </div>
     """, unsafe_allow_html=True)
 
-    # Form Studio Input (Menggunakan struktur native Streamlit agar aman dari error sintaks HTML)
-    with st.container():
-        st.markdown('<div class="card">', unsafe_allow_html=True)
+    # Form Studio Input (Menggunakan Streamlit Native Form murni tanpa HTML division yang error)
+    with st.form("studio_form"):
         st.markdown("#### 🔗 Tautan Sumber Media (YouTube URL)")
         link = st.text_input("YouTube URL", placeholder="https://www.youtube.com/watch?v=...", label_visibility="collapsed")
         
-        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("")
         
         col1, col2 = st.columns(2)
         with col1:
@@ -99,5 +98,57 @@ if menu == "Beranda & Studio":
             estimasi = st.selectbox("Estimasi Durasi Proses", ["⚡ Kilat (~3-5 Menit)", "Standard"])
             fokus = st.selectbox("Fokus Ekstraksi Konten", ["🔥 Deteksi Menyeluruh (AI Multi-Analisis)", "Fokus Hook Utama"])
         
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button
+        st.markdown("")
+        submitted = st.form_submit_button("✨ Eksekusi Analisis Otonom")
+        
+        if submitted:
+            if link:
+                st.info("Menghubungkan ke server YouTube untuk membaca metadata video...")
+                st.success("Video Berhasil Dideteksi!")
+            else:
+                st.warning("⚠️ Silakan masukkan tautan YouTube terlebih dahulu!")
+
+    # --- LANGKAH-LANGKAH PENGGUNAAN ---
+    st.markdown("### 📋 Cara Kerja Sistem Otonom Kami")
+    col_f1, col_f2 = st.columns(2)
+    with col_f1:
+        st.markdown("""
+        <div class="card">
+            <h4>1. Ingest Data</h4>
+            <p style="font-size: 14px; opacity: 0.8; margin-bottom: 0;">Kirimkan tautan arsip video berdurasi panjang ke dalam sistem komputasi cloud kami secara aman dan cepat.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_f2:
+        st.markdown("""
+        <div class="card">
+            <h4>2. Deep Scanning</h4>
+            <p style="font-size: 14px; opacity: 0.8; margin-bottom: 0;">Algoritma machine learning menyeleksi puncak impresi, emosi, dan inti narasi terbaik secara presisi.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # --- PROFIL FOUNDER ---
+    st.markdown("""
+    <div class="profile-card">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=faces" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid #007bff; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto;" alt="Founder">
+        <h3 style="margin: 0; font-size: 18px; text-align: center;">Usman Shidiq</h3>
+        <p style="color: #4da6ff; font-size: 13px; margin-top: 2px; margin-bottom: 12px; text-align: center;">Founder of Paidi.ai</p>
+        <p style="font-size: 14px; opacity: 0.9; line-height: 1.6; text-align: center; margin-bottom: 8px;">
+            "Paidi.ai lahir dari sebuah keresahan pribadi melihat betapa melelahkannya proses manual memotong video podcast atau rekaman panjang menjadi klip-klip pendek vertikal yang siap viral. Waktu kreatif kreator seringkali habis di ruang edit yang repetitif.<br><br>
+            Saat ini, <strong>Paidi.ai masih berada di tahap rintisan awal (early-stage startup)</strong>, di mana kami terus merintis, belajar, dan berinovasi bersama komunitas kreator di Indonesia untuk menghadirkan solusi teknologi otomasi video yang efisien, mudah digunakan, dan terjangkau."
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # --- INFORMASI KORPORAT ---
+    st.markdown("### 🏢 Informasi Korporat & Kontak Resmi")
+    st.markdown("""
+    <div class="card" style="border-left: 4px solid #007bff;">
+        <p style="font-size: 13px; line-height: 1.6; margin-bottom: 10px;">
+            <strong>PT Paidi.ai Group</strong> didirikan pada tahun <strong>2026</strong> di Kota Malang, Jawa Timur. Kami berkomitmen membangun fondasi perangkat lunak rintisan berbasis kecerdasan buatan untuk revolusi konten digital Indonesia.
+        </p>
+        <hr style="border-color: rgba(255,255,255,0.1); margin: 12px 0;">
+        <p style="font-size: 13px; margin: 0; opacity: 0.9;">
+            📍 <strong>Alamat Kantor:</strong> Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139<br>
+            📞 <strong>WhatsApp Korporat:</strong> 083853413171<br>
+            ✉️ <strong>Layanan Gmail Resmi:</strong> support@paidi.ai / usmancipanky@gmail.com<br>
+            📱

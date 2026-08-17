@@ -73,7 +73,7 @@ if menu == "Beranda & Studio":
     # --- PANEL STUDIO UTAMA ---
     st.markdown("### 🛠️ Studio Pemrosesan Konten")
     
-    # Banner Promo Pengguna Baru (Tetap Tampil di Atas Form)
+    # Banner Promo Pengguna Baru (TETAP ADA DI ATAS FORM)
     st.markdown("""
     <div class="promo-banner">
         <span style="font-size: 14px; font-weight: bold; color: #4da6ff;">🎁 PROMO SPESIAL PENGGUNA BARU:</span>
@@ -81,32 +81,26 @@ if menu == "Beranda & Studio":
     </div>
     """, unsafe_allow_html=True)
 
-    # Form Studio Input (Menggunakan Streamlit Native Form murni tanpa HTML division yang error)
-    with st.form("studio_form"):
-        st.markdown("#### 🔗 Tautan Sumber Media (YouTube URL)")
-        link = st.text_input("YouTube URL", placeholder="https://www.youtube.com/watch?v=...", label_visibility="collapsed")
-        
-        st.markdown("")
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            durasi = st.selectbox("Durasi Target Klip", ["Pendek (15-30 detik)", "Standar (30-60 detik)"])
-            subtitle = st.selectbox("Gaya Subtitle / Headline", ["Dinamis Alex Hormozi Style", "Minimalis Clean", "Tanpa Subtitle"])
-            rasio = st.selectbox("Rasio Aspek Video", ["9:16 (Vertical Reels/TikTok)", "1:1 (Square)", "16:9 (Horizontal)"])
-        with col2:
-            resolusi = st.selectbox("Resolusi Ekspor", ["1080p (Full HD)", "720p (HD)"])
-            estimasi = st.selectbox("Estimasi Durasi Proses", ["⚡ Kilat (~3-5 Menit)", "Standard"])
-            fokus = st.selectbox("Fokus Ekstraksi Konten", ["🔥 Deteksi Menyeluruh (AI Multi-Analisis)", "Fokus Hook Utama"])
-        
-        st.markdown("")
-        submitted = st.form_submit_button("✨ Eksekusi Analisis Otonom")
-        
-        if submitted:
-            if link:
-                st.info("Menghubungkan ke server YouTube untuk membaca metadata video...")
-                st.success("Video Berhasil Dideteksi!")
-            else:
-                st.warning("⚠️ Silakan masukkan tautan YouTube terlebih dahulu!")
+    # Form Studio Input (Stabil & Aman dari Syntax Error)
+    st.markdown("#### 🔗 Tautan Sumber Media (YouTube URL)")
+    link = st.text_input("YouTube URL", placeholder="https://www.youtube.com/watch?v=...", label_visibility="collapsed")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        durasi = st.selectbox("Durasi Target Klip", ["Pendek (15-30 detik)", "Standar (30-60 detik)"])
+        subtitle = st.selectbox("Gaya Subtitle / Headline", ["Dinamis Alex Hormozi Style", "Minimalis Clean", "Tanpa Subtitle"])
+        rasio = st.selectbox("Rasio Aspek Video", ["9:16 (Vertical Reels/TikTok)", "1:1 (Square)", "16:9 (Horizontal)"])
+    with col2:
+        resolusi = st.selectbox("Resolusi Ekspor", ["1080p (Full HD)", "720p (HD)"])
+        estimasi = st.selectbox("Estimasi Durasi Proses", ["⚡ Kilat (~3-5 Menit)", "Standard"])
+        fokus = st.selectbox("Fokus Ekstraksi Konten", ["🔥 Deteksi Menyeluruh (AI Multi-Analisis)", "Fokus Hook Utama"])
+    
+    if st.button("✨ Eksekusi Analisis Otonom", type="primary"):
+        if link:
+            st.info("Menghubungkan ke server YouTube untuk membaca metadata video...")
+            st.success("Video Berhasil Dideteksi!")
+        else:
+            st.warning("⚠️ Silakan masukkan tautan YouTube terlebih dahulu!")
 
     # --- LANGKAH-LANGKAH PENGGUNAAN ---
     st.markdown("### 📋 Cara Kerja Sistem Otonom Kami")
@@ -151,4 +145,29 @@ if menu == "Beranda & Studio":
             📍 <strong>Alamat Kantor:</strong> Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139<br>
             📞 <strong>WhatsApp Korporat:</strong> 083853413171<br>
             ✉️ <strong>Layanan Gmail Resmi:</strong> support@paidi.ai / usmancipanky@gmail.com<br>
-            📱
+            📱 <strong>Media Sosial:</strong> TikTok & Instagram (@Paidi.ai.idn)
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+# Halaman Lainnya
+elif menu == "Kredit & Paket":
+    st.markdown("# 💳 Kredit & Paket Berlangganan")
+    st.markdown("---")
+    st.write("Sisa sesi pemrosesan AI Anda saat ini adalah **5 / 10 Sesi** (Status Rintisan Awal).")
+    st.button("Top Up Sesi Tambahan")
+
+elif menu == "Program Affiliate":
+    st.markdown("# 🤝 Program Affiliate Paidi.ai")
+    st.markdown("---")
+    st.write("Dapatkan komisi menarik dengan membagikan tautan referral eksklusif Anda ke sesama kreator.")
+    st.code("https://paidi.ai/ref/usman_shidiq")
+
+elif menu == "Akun & Profil":
+    st.markdown("# 👤 Akun & Profil Founder")
+    st.markdown("---")
+    st.markdown("### Halo, saya Usman Shidiq")
+    st.write('"Sebagai pengembang yang merintis Paidi.ai dari Malang, visi kami adalah memangkas kerumitan teknis produksi video pendek agar setiap kreator bisa fokus penuh pada pesan dan karya mereka."')
+    st.markdown("**Usman Shidiq** · *Founder of Paidi.ai*")
+    st.markdown("📍 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139")
+    st.markdown("📞 Hotline: 083853413171 | ✉️ Email: support@paidi.ai")

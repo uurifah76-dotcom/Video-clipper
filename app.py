@@ -1,13 +1,13 @@
 import streamlit as st
 
-# Konfigurasi Halaman (Mode standard vertikal agar rapi seperti website korporat besar)
+# Konfigurasi Halaman (Tata letak vertikal profesional kelas dunia)
 st.set_page_config(
     page_title="Paidi.ai - AI Video Studio",
     layout="centered",
     initial_sidebar_state="expanded"
 )
 
-# CSS Kustom untuk Tampilan Profesional Ala Perusahaan SaaS Besar
+# CSS Kustom untuk Tampilan Elegan & Kartu Transparan ala Startup Modern
 st.markdown("""
     <style>
     .stApp { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: white; }
@@ -24,6 +24,14 @@ st.markdown("""
         border: 1px solid rgba(255, 255, 255, 0.1);
         padding: 24px;
         border-radius: 12px;
+        margin-bottom: 20px;
+    }
+    .profile-card {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(0, 123, 255, 0.4);
+        padding: 25px;
+        border-radius: 14px;
+        text-align: center;
         margin-bottom: 20px;
     }
     .stButton>button {
@@ -47,25 +55,25 @@ menu = st.sidebar.radio(
 )
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("**Status Sistem:** Versi 1.0 Live")
+st.sidebar.markdown("**Status Sistem:** 🚀 Rintisan Awal (Early Stage)")
 st.sidebar.markdown("**Kredit Anda:** 5 / 10 Sesi")
 st.sidebar.markdown("📍 Malang, Indonesia")
 
-# 1. Halaman Beranda & Studio (Struktur Vertikal Profesional)
+# 1. Halaman Beranda & Studio (Landing Page Profesional)
 if menu == "Beranda & Studio":
     
-    # --- BAGIAN 1: HERO SECTION / PROMOSI UTAMA DI PALING ATAS ---
+    # --- HERO SECTION / PROMOSI UTAMA DI PALING ATAS ---
     st.markdown("""
     <div class="hero-box">
         <h1 style="font-size: 32px; margin-bottom: 10px;">⚡ Paidi.ai Video Studio</h1>
-        <h3 style="color: #4da6ff; margin-top: 0; font-size: 20px;">Ekstraksi Konten Sinematik: Dari Video Panjang Menjadi Reels Daya Tarik Tinggi 🔗</h3>
+        <h3 style="color: #4da6ff; margin-top: 0; font-size: 20px;">Ekstraksi Konten Sinematik: Dari Video Panjang Menjadi Reels Daya Tinggi 🔗</h3>
         <p style="font-size: 15px; opacity: 0.9; max-width: 600px; margin: 0 auto;">
             Sistem kecerdasan buatan otonom kami memindai durasi penuh, mengidentifikasi segmen paling bernilai tinggi, serta meraciknya dalam format vertikal siap edar secara instan.
         </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # --- BAGIAN 2: KOLOM MENU / PANEL STUDIO UTAMA ---
+    # --- PANEL STUDIO UTAMA ---
     st.markdown("### 🛠️ Studio Pemrosesan Konten")
     with st.container():
         st.markdown('<div class="card">', unsafe_allow_html=True)
@@ -95,7 +103,7 @@ if menu == "Beranda & Studio":
                 
         st.markdown('</div>', unsafe_allow_html=True)
 
-    # --- BAGIAN 3: LANGKAH-LANGKAH PENGGUNAAN (HOW IT WORKS) ---
+    # --- LANGKAH-LANGKAH PENGGUNAAN (HOW IT WORKS) ---
     st.markdown("### 📋 Cara Kerja Sistem Otonom Kami")
     col_f1, col_f2 = st.columns(2)
     with col_f1:
@@ -113,32 +121,35 @@ if menu == "Beranda & Studio":
         </div>
         """, unsafe_allow_html=True)
 
-    # --- BAGIAN 4: PROFIL FOUNDER & ALASAN BERDIRINYA PAIDI.AI (PROMOSI HALUS) ---
+    # --- CERITA DI BALIK PAIDI.AI & PROFIL FOUNDER (FOTO BEBAS + USMAN SHIDIQ) ---
     st.markdown("### 💡 Cerita Di Balik Paidi.ai")
+    
+    # Placeholder Foto Profil Bebas (Bisa diganti link gambar asli kamu nanti)
     st.markdown("""
-    <div class="card">
-        <h4 style="color: #4da6ff;">Mengapa Paidi.ai Hadir untuk Kreator Indonesia?</h4>
-        <p style="font-size: 14px; opacity: 0.9; line-height: 1.6;">
-            "Saya merintis pengembangan <strong>Paidi.ai</strong> berawal dari keresahan melihat betapa melelahkannya proses manual memotong video panjang menjadi klip pendek yang menarik perhatian penonton. Banyak kreator potensial kehabisan waktu di ruang edit alih-alih fokus memikirkan ide konten.<br><br>
-            Oleh karena itu, Paidi.ai didirikan untuk merevolusi alur kerja produksi media—menghadirkan solusi otomatisasi cerdas yang efisien, cepat, dan terjangkau bagi siapa saja yang ingin bersaing di era video vertikal."
+    <div class="profile-card">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=faces" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid #007bff; margin-bottom: 12px;" alt="Founder">
+        <h3 style="margin: 0; font-size: 18px;">Usman Shidiq</h3>
+        <p style="color: #4da6ff; font-size: 13px; margin-top: 2px; margin-bottom: 12px;">Founder of Paidi.ai</p>
+        <p style="font-size: 14px; opacity: 0.9; line-height: 1.6; text-align: left; margin-bottom: 8px;">
+            "Paidi.ai lahir dari sebuah keresahan pribadi melihat betapa melelahkannya proses manual memotong video podcast atau rekaman panjang menjadi klip-klip pendek vertikal yang siap viral. Waktu kreatif kreator seringkali habis di ruang edit yang repetitif.<br><br>
+            Saat ini, <strong>Paidi.ai masih berada di tahap rintisan awal (early-stage startup)</strong>, di mana kami terus merintis, belajar, dan berinovasi bersama komunitas kreator di Indonesia untuk menghadirkan solusi teknologi otomasi video yang efisien, mudah digunakan, dan terjangkau."
         </p>
-        <p style="margin-top: 15px; margin-bottom: 0;"><strong>Usman cip4nky</strong> · <span style="font-size: 13px; opacity: 0.8;">Founder & CEO of Paidi.ai</span></p>
     </div>
     """, unsafe_allow_html=True)
 
-    # --- BAGIAN 5: INFORMASI PERUSAHAAN & KORPORAT BESAR ---
+    # --- INFORMASI PERUSAHAAN & KORPORAT ---
     st.markdown("### 🏢 Informasi Korporat & Kontak Resmi")
     st.markdown("""
     <div class="card" style="border-left: 4px solid #007bff;">
         <p style="font-size: 13px; line-height: 1.6; margin-bottom: 10px;">
-            <strong>PT Paidi.ai Group</strong> didirikan pada tahun <strong>2026</strong> di Kota Malang, Jawa Timur. Kami berkomitmen menjadi pelopor infrastruktur perangkat lunak rintisan berbasis kecerdasan buatan untuk otomatisasi <em>repurposing</em> video di Indonesia.
+            <strong>PT Paidi.ai Group</strong> didirikan pada tahun <strong>2026</strong> di Kota Malang, Jawa Timur. Kami berkomitmen membangun fondasi perangkat lunak rintisan berbasis kecerdasan buatan untuk revolusi konten digital Indonesia.
         </p>
         <hr style="border-color: rgba(255,255,255,0.1); margin: 12px 0;">
         <p style="font-size: 13px; margin: 0; opacity: 0.9;">
-            📍 <strong>Alamat Kantor Pusat:</strong> Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139<br>
-            📞 <strong>Telepon / WhatsApp Korporat:</strong> 083853413171<br>
-            ✉️ <strong>Layanan Pelanggan (Gmail):</strong> support@paidi.ai / usmancipanky@gmail.com<br>
-            📱 <strong>Media Sosial Resmi:</strong> TikTok & Instagram (@Paidi.ai.idn)
+            📍 <strong>Alamat Kantor:</strong> Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139<br>
+            📞 <strong>WhatsApp Korporat:</strong> 083853413171<br>
+            ✉️ <strong>Layanan Gmail Resmi:</strong> support@paidi.ai / usmancipanky@gmail.com<br>
+            📱 <strong>Media Sosial:</strong> TikTok & Instagram (@Paidi.ai.idn)
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -147,7 +158,7 @@ if menu == "Beranda & Studio":
 elif menu == "Kredit & Paket":
     st.markdown("# 💳 Kredit & Paket Berlangganan")
     st.markdown("---")
-    st.write("Sisa sesi pemrosesan AI Anda saat ini adalah **5 / 10 Sesi**.")
+    st.write("Sisa sesi pemrosesan AI Anda saat ini adalah **5 / 10 Sesi** (Status Rintisan Awal).")
     st.button("Top Up Sesi Tambahan")
 
 # Halaman Program Affiliate
@@ -155,25 +166,25 @@ elif menu == "Program Affiliate":
     st.markdown("# 🤝 Program Affiliate Paidi.ai")
     st.markdown("---")
     st.write("Dapatkan komisi menarik dengan membagikan tautan referral eksklusif Anda ke sesama kreator.")
-    st.code("https://paidi.ai/ref/usman_cip4nky")
+    st.code("https://paidi.ai/ref/usman_shidiq")
 
 # Halaman Akun & Profil
 elif menu == "Akun & Profil":
-    st.markdown("# 👤 Akun & Profil")
+    st.markdown("# 👤 Akun & Profil Founder")
     st.markdown("---")
-    st.markdown("### Halo, saya Usman cip4nky")
-    st.write('"Saya merintis pengembangan Paidi.ai untuk membantu kreator menyederhanakan alur kerja produksi media. Sebagai platform baru, kami terus belajar dan bertumbuh bersama komunitas untuk memberikan solusi terbaik."')
+    st.markdown("### Halo, saya Usman Shidiq")
+    st.write('"Sebagai pengembang yang merintis Paidi.ai dari Malang, visi kami adalah memangkas kerumitan teknis produksi video pendek agar setiap kreator bisa fokus penuh pada pesan dan karya mereka."')
     
-    st.markdown("**Usman cip4nky** · *Founder of Paidi.ai*")
+    st.markdown("**Usman Shidiq** · *Founder of Paidi.ai*")
     st.markdown("📍 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139")
     st.markdown("📞 Hotline: 083853413171 | ✉️ Email: support@paidi.ai")
 
-# Footer Korporat Standar Internasional
+# Footer Korporat Standar
 st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: #888; font-size: 12px; line-height: 1.5;'>
     <strong>Paidi.ai</strong> — Infrastruktur perangkat lunak rintisan berbasis kecerdasan buatan untuk otomatisasi repurposing video di Indonesia.<br>
     🏢 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139 | 📞 083853413171 | ✉️ support@paidi.ai<br>
-    © 2026 PT Paidi.ai Group. Didirikan 2026. Hak Cipta Dilindungi Undang-Undang. Engineered in Malang, Indonesia.
+    © 2026 PT Paidi.ai Group. Didirikan 2026. Hak Cipta Dilindungi Undang-Undang. Engineered with excellence in Malang, Indonesia.
 </div>
 """, unsafe_allow_html=True)

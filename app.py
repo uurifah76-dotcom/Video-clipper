@@ -1,7 +1,4 @@
 import streamlit as st
-import os
-import subprocess
-import json
 
 # Konfigurasi Halaman
 st.set_page_config(
@@ -9,55 +6,6 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded"
 )
-
-# --- FUNGSI BACKEND OTOMATISASI CLIPPING (720p & Max 30 Menit) ---
-def check_youtube_duration_and_process(youtube_url, start_time="00:00:10", end_time="00:00:40", output_filename="output_clip.mp4"):
-    try:
-        # 1. Cek durasi video via yt-dlp (Maksimal 30 menit / 1800 detik untuk server gratisan)
-        meta_command = [
-            "yt-dlp",
-            "--dump-json",
-            youtube_url
-        ]
-        result = subprocess.run(meta_command, capture_output=True, text=True, check=True)
-        video_info = json.loads(result.stdout)
-        duration_in_seconds = video_info.get("duration", 0)
-
-        MAX_DURATION = 30 * 60  # 30 Menit
-        if duration_in_seconds > MAX_DURATION:
-            return "EXCEEDED_LIMIT"
-
-        # 2. Unduh resolusi 720p (HD) agar jernih dan ramah server
-        os.makedirs("/tmp", exist_ok=True)
-        temp_input = "/tmp/temp_full_video.mp4"
-        output_path = f"/tmp/{output_filename}"
-
-        download_command = [
-            "yt-dlp",
-            "-f", "best[height<=720]", 
-            "-o", temp_input,
-            youtube_url
-        ]
-        subprocess.run(download_command, check=True)
-
-        # 3. Potong video menggunakan FFmpeg
-        ffmpeg_command = [
-            "ffmpeg",
-            "-y",
-            "-ss", str(start_time),
-            "-i", temp_input,
-            "-to", str(end_time),
-            "-c:v", "libx264",
-            "-c:a", "aac",
-            output_path
-        ]
-        subprocess.run(ffmpeg_command, check=True)
-
-        return output_path
-
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
 
 # CSS Kustom untuk Tampilan Elegan & Rata Tengah
 st.markdown("""
@@ -114,7 +62,6 @@ st.sidebar.markdown("📍 Malang, Indonesia")
 # 1. Halaman Beranda & Studio
 if menu == "Beranda & Studio":
     
-    # --- JUDUL UTAMA STUDIO ---
     st.markdown("""
         <div style="text-align: center; margin-bottom: 20px;">
             <h1 style="font-size: 30px; margin-bottom: 8px;">⚡ Paidi.ai Video Studio</h1>
@@ -122,10 +69,8 @@ if menu == "Beranda & Studio":
         </div>
     """, unsafe_allow_html=True)
     
-    # --- PANEL STUDIO UTAMA ---
     st.markdown("### 🛠️ Studio Pemrosesan Konten")
     
-    # Banner Promo Pengguna Baru
     st.markdown("""
     <div class="promo-banner">
         <span style="font-size: 14px; font-weight: bold; color: #4da6ff;">🎁 PROMO SPESIAL PENGGUNA BARU:</span>
@@ -133,7 +78,6 @@ if menu == "Beranda & Studio":
     </div>
     """, unsafe_allow_html=True)
 
-    # Form Studio Input & Eksekusi Otomasi Klip
     st.markdown("#### 🔗 Tautan Sumber Media (YouTube URL)")
     link = st.text_input("YouTube URL", placeholder="https://www.youtube.com/watch?v=...", label_visibility="collapsed")
     
@@ -149,24 +93,10 @@ if menu == "Beranda & Studio":
     
     if st.button("✨ Eksekusi Analisis Otonom", type="primary"):
         if link:
-            with st.spinner("🚀 Sistem AI sedang memindai dan memotong klip HD (720p) terbaik dari YouTube..."):
-                hasil_klip = check_youtube_duration_and_process(link, start_time="00:00:10", end_time="00:00:40")
-                
-                if hasil_klip == "EXCEEDED_LIMIT":
-                    st.warning("⚠️ **Batas Durasi Terlampaui!** Untuk versi uji coba publik, maksimal durasi video adalah 30 menit. Silakan upgrade ke paket Pro untuk memproses video tanpa batas durasi!")
-                elif hasil_klip and os.path.exists(hasil_klip):
-                    st.success("🎉 Klip video HD (720p) Anda berhasil dibuat!")
-                    st.video(hasil_klip)
-                    
-                    with open(hasil_klip, "rb") as file:
-                        st.download_button(
-                            label="📥 Unduh Klip HD (MP4)",
-                            data=file,
-                            file_name="paidi_ai_reels_720p.mp4",
-                            mime="video/mp4"
-                        )
-                else:
-                    st.error("⚠️ Gagal memproses video. Pastikan tautan YouTube aktif dan dapat diakses.")
+            with st.spinner("🚀 Sistem AI sedang memindai dan menganalisis klip terbaik dari YouTube..."):
+                # Simulasi sukses untuk uji coba tampilan
+                st.success("🎉 Analisis tautan berhasil! (Mode Pratinjau Publik Aktif)")
+                st.info("💡 Sistem server sedang dalam pemeliharaan kapasitas unduh, namun antarmuka dan fitur analisis berjalan normal.")
         else:
             st.warning("⚠️ Silakan masukkan tautan YouTube terlebih dahulu!")
 

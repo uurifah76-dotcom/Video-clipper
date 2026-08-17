@@ -1,63 +1,95 @@
 import streamlit as st
 
 # Konfigurasi Halaman
-st.set_page_config(page_title="Paidi.ai - AI Video Studio", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(
+    page_title="Paidi.ai - AI Video Studio",
+    layout="centered",
+    initial_sidebar_state="auto"
+)
 
-# CSS Kustom untuk Tampilan Elegan
-st.markdown("""
-    <style>
-    .stApp { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: white; }
-    .stButton>button { width: 100%; border-radius: 5px; height: 3em; background-color: #007bff; color: white; font-weight: bold; }
-    </style>
-    """, unsafe_allow_html=True)
+# Sidebar Navigasi Asli
+st.sidebar.markdown("### ⚡ Paidi.ai Menu")
+st.sidebar.markdown("**Navigasi Utama**")
+menu = st.sidebar.radio(
+    "Pilih Menu", 
+    ["Beranda & Studio", "Kredit & Paket", "Program Affiliate", "Akun & Profil"],
+    label_visibility="collapsed"
+)
 
-# Sidebar Navigasi Lengkap
-st.sidebar.title("Paidi.ai Navigation")
-menu = st.sidebar.radio("Menu", ["Beranda", "Kredit", "Affiliate", "Profil", "Tentang Perusahaan"])
+st.sidebar.markdown("---")
+st.sidebar.markdown("**Status Sistem:** Rintisan Awal")
+st.sidebar.markdown("**Kredit Anda:** 5 / 10 Sesi")
+st.sidebar.markdown("📍 Malang, Indonesia")
 
-# Halaman Beranda
-if menu == "Beranda":
-    st.title("🚀 Paidi.ai Video Studio")
-    st.subheader("Ubah video panjang menjadi klip viral otomatis.")
+# Konten Beranda & Studio
+if menu == "Beranda & Studio":
+    st.markdown("# ⚡ Paidi.ai")
+    st.markdown("---")
     
-    link = st.text_input("🔗 Masukkan Tautan YouTube:", placeholder="https://www.youtube.com/watch?v=...")
+    st.markdown("## Ekstraksi Konten Sinematik\nDari Video Panjang Menjadi *Reels* Daya Tarik Tinggi 🔗")
+    st.markdown("Sistem kecerdasan buatan otonom kami memindai durasi penuh, mengidentifikasi segmen paling bernilai tinggi, serta meraciknya dalam format vertikal siap edar.")
     
-    durasi = st.slider("⏱️ Durasi Klip (detik)", 15, 60, 30)
-    subtitle = st.checkbox("✅ Aktifkan Subtitle Otomatis", value=True)
-    rasio = st.selectbox("📱 Rasio Aspek", ["9:16 (Vertikal)", "1:1 (Kotak)", "16:9 (Horizontal)"])
-    fokus = st.selectbox("🎯 Fokus Ekstraksi", ["AI Cerdas", "Transkrip Penuh"])
+    st.markdown("### Tautan Sumber Media (YouTube URL)")
+    link = st.text_input("YouTube URL", placeholder="https://www.youtube.com/watch?v=...", label_visibility="collapsed")
     
-    if st.button("Mulai Proses AI"):
+    st.markdown("---")
+    
+    durasi = st.selectbox("Durasi Target Klip", ["Pendek (15-30 detik)", "Standar (30-60 detik)"])
+    subtitle = st.selectbox("Gaya Subtitle / Headline", ["Dinamis Alex Hormozi Style", "Minimalis Clean", "Tanpa Subtitle"])
+    rasio = st.selectbox("Rasio Aspek Video", ["9:16 (Vertical Reels/TikTok)", "1:1 (Square)", "16:9 (Horizontal)"])
+    resolusi = st.selectbox("Resolusi Ekspor", ["1080p (Full HD)", "720p (HD)"])
+    estimasi = st.selectbox("Estimasi Durasi Proses", ["⚡ Kilat (~3-5 Menit)", "Standard"])
+    fokus = st.selectbox("Fokus Ekstraksi Konten", ["🔥 Deteksi Menyeluruh (AI Multi-Analisis Semua Kategori)", "Fokus Hook Utama"])
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button("✨ Eksekusi Analisis Otonom", type="primary"):
         if link:
-            st.info("Sistem sedang memproses video Anda di cloud...")
+            st.info("Menghubungkan ke server YouTube untuk membaca metadata video...")
+            st.success("Video Berhasil Dideteksi!")
+            st.markdown("""
+            ### 📌 Informasi Metadata Video:
+            * **Judul:** Contoh Judul Video Panjang YouTube
+            * **Kanal:** Nama Kreator
+            * **Durasi Asli:** 46 menit 8 detik
+            """)
         else:
             st.warning("⚠️ Silakan masukkan tautan YouTube terlebih dahulu!")
 
-# Halaman Kredit
-elif menu == "Kredit":
-    st.header("💳 Saldo Kredit Anda")
-    st.write("Sisa Kredit Anda: **150 Kredit Tersedia**")
-    st.button("Top Up Kredit")
+# Konten Kredit & Paket
+elif menu == "Kredit & Paket":
+    st.markdown("# 💳 Kredit & Paket Berlangganan")
+    st.markdown("---")
+    st.write("Sisa sesi pemrosesan AI Anda saat ini adalah **5 / 10 Sesi**.")
+    st.button("Top Up Sesi Tambahan")
 
-# Halaman Affiliate
-elif menu == "Affiliate":
-    st.header("🤝 Program Affiliate Paidi.ai")
-    st.write("Bagikan tautan referral Anda dan dapatkan komisi dari setiap pengguna baru.")
+# Konten Program Affiliate
+elif menu == "Program Affiliate":
+    st.markdown("# 🤝 Program Affiliate Paidi.ai")
+    st.markdown("---")
+    st.write("Dapatkan komisi menarik dengan membagikan tautan referral eksklusif Anda ke sesama kreator.")
     st.code("https://paidi.ai/ref/usman_cip4nky")
 
-# Halaman Profil
-elif menu == "Profil":
-    st.header("👤 Profil Pengguna & Founder")
-    st.write(f"**Founder:** Usman (cip4nky)")
-    st.write(f"**Lokasi Kantor:** Malang, Jawa Timur, Indonesia")
-    st.write("Platform AI video studio untuk kreator konten profesional.")
+# Konten Akun & Profil
+elif menu == "Akun & Profil":
+    st.markdown("# 👤 Akun & Profil")
+    st.markdown("---")
+    st.markdown("### Halo, saya Usman cip4nky")
+    st.write('"Saya merintis pengembangan Paidi.ai untuk membantu kreator menyederhanakan alur kerja produksi media. Sebagai platform baru, kami terus belajar dan bertumbuh bersama komunitas untuk memberikan solusi terbaik."')
+    
+    st.markdown("**Usman cip4nky** · *Founder of Usman cip4nky*")
+    st.markdown("📍 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139")
+    st.markdown("📞 Hotline: 083853413171 | ✉️ Email: support@paidi.ai")
 
-# Halaman Tentang Perusahaan
-elif menu == "Tentang Perusahaan":
-    st.header("🏢 Tentang Paidi.ai")
-    st.write("Paidi.ai adalah perusahaan teknologi berbasis kecerdasan buatan yang berfokus pada otomatisasi konten video pendek (Reels, TikTok, Shorts).")
-    st.write("Kami berkomitmen menghadirkan solusi pengeditan tercepat dan efisien bagi kreator di seluruh Indonesia.")
-
-# Footer Korporat
+# Footer Perusahaan
 st.markdown("---")
-st.markdown("<div style='text-align: center; color: gray;'>© 2026 Paidi.ai - All Rights Reserved</div>", unsafe_allow_html=True)
+st.markdown("""
+<div style='text-align: center; color: #888; font-size: 13px;'>
+    <strong>Paidi.ai</strong><br>
+    Infrastruktur perangkat lunak rintisan berbasis kecerdasan buatan untuk otomatisasi repurposing video di Indonesia.<br><br>
+    🏢 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139<br>
+    📞 WhatsApp/Telp: 083853413171 | ✉️ support@paidi.ai<br>
+    📱 TikTok & Instagram: @Paidi.ai.idn<br><br>
+    © 2026 PT Paidi.ai Group. Didirikan 2026. Hak Cipta Dilindungi Undang-Undang.<br>
+    Engineered with excellence from Malang, Indonesia.
+</div>
+""", unsafe_allow_html=True)

@@ -1,24 +1,16 @@
 import streamlit as st
 
-# Konfigurasi Halaman (Tata letak vertikal profesional kelas dunia)
+# Konfigurasi Halaman (Tata letak vertikal profesional & ringkas)
 st.set_page_config(
     page_title="Paidi.ai - AI Video Studio",
     layout="centered",
     initial_sidebar_state="expanded"
 )
 
-# CSS Kustom untuk Tampilan Elegan & Kartu Transparan ala Startup Modern
+# CSS Kustom untuk Tampilan Elegan, Ringkas, dan Rata Tengah
 st.markdown("""
     <style>
     .stApp { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: white; }
-    .hero-box {
-        background: rgba(0, 123, 255, 0.15);
-        border: 1px solid rgba(0, 123, 255, 0.3);
-        padding: 30px;
-        border-radius: 16px;
-        text-align: center;
-        margin-bottom: 25px;
-    }
     .card {
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -59,18 +51,18 @@ st.sidebar.markdown("**Status Sistem:** 🚀 Rintisan Awal (Early Stage)")
 st.sidebar.markdown("**Kredit Anda:** 5 / 10 Sesi")
 st.sidebar.markdown("📍 Malang, Indonesia")
 
-# 1. Halaman Beranda & Studio (Landing Page Profesional)
+# 1. Halaman Beranda & Studio (Landing Page Ringkas & Menyatu)
 if menu == "Beranda & Studio":
     
-    # --- HERO SECTION / PROMOSI UTAMA DI PALING ATAS ---
+    # --- SLOGAN PROMOSI UTAMA (Langsung Menyatu Tanpa Kotak Pembungkus Atas) ---
     st.markdown("""
-    <div class="hero-box">
-        <h1 style="font-size: 32px; margin-bottom: 10px;">⚡ Paidi.ai Video Studio</h1>
-        <h3 style="color: #4da6ff; margin-top: 0; font-size: 20px;">Ekstraksi Konten Sinematik: Dari Video Panjang Menjadi Reels Daya Tinggi 🔗</h3>
-        <p style="font-size: 15px; opacity: 0.9; max-width: 600px; margin: 0 auto;">
-            Sistem kecerdasan buatan otonom kami memindai durasi penuh, mengidentifikasi segmen paling bernilai tinggi, serta meraciknya dalam format vertikal siap edar secara instan.
-        </p>
-    </div>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <h1 style="font-size: 30px; margin-bottom: 8px;">⚡ Paidi.ai Video Studio</h1>
+            <h3 style="color: #4da6ff; margin-top: 0; font-size: 18px;">Ekstraksi Konten Sinematik: Dari Video Panjang Menjadi Reels Daya Tinggi 🔗</h3>
+            <p style="font-size: 14px; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+                Sistem kecerdasan buatan otonom kami memindai durasi penuh, mengidentifikasi segmen paling bernilai tinggi, serta meraciknya dalam format vertikal siap edar secara instan.
+            </p>
+        </div>
     """, unsafe_allow_html=True)
     
     # --- PANEL STUDIO UTAMA ---
@@ -121,16 +113,13 @@ if menu == "Beranda & Studio":
         </div>
         """, unsafe_allow_html=True)
 
-    # --- CERITA DI BALIK PAIDI.AI & PROFIL FOUNDER (FOTO BEBAS + USMAN SHIDIQ) ---
-    st.markdown("### 💡 Cerita Di Balik Paidi.ai")
-    
-    # Placeholder Foto Profil Bebas (Bisa diganti link gambar asli kamu nanti)
+    # --- PROFIL FOUNDER (Teks & Posisi Ditengah, Tanpa Logo Lampu, Ada "Founder of") ---
     st.markdown("""
     <div class="profile-card">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=faces" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid #007bff; margin-bottom: 12px;" alt="Founder">
-        <h3 style="margin: 0; font-size: 18px;">Usman Shidiq</h3>
-        <p style="color: #4da6ff; font-size: 13px; margin-top: 2px; margin-bottom: 12px;">Founder of Paidi.ai</p>
-        <p style="font-size: 14px; opacity: 0.9; line-height: 1.6; text-align: left; margin-bottom: 8px;">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=faces" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid #007bff; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto;" alt="Founder">
+        <h3 style="margin: 0; font-size: 18px; text-align: center;">Usman Shidiq</h3>
+        <p style="color: #4da6ff; font-size: 13px; margin-top: 2px; margin-bottom: 12px; text-align: center;">Founder of Paidi.ai</p>
+        <p style="font-size: 14px; opacity: 0.9; line-height: 1.6; text-align: center; margin-bottom: 8px;">
             "Paidi.ai lahir dari sebuah keresahan pribadi melihat betapa melelahkannya proses manual memotong video podcast atau rekaman panjang menjadi klip-klip pendek vertikal yang siap viral. Waktu kreatif kreator seringkali habis di ruang edit yang repetitif.<br><br>
             Saat ini, <strong>Paidi.ai masih berada di tahap rintisan awal (early-stage startup)</strong>, di mana kami terus merintis, belajar, dan berinovasi bersama komunitas kreator di Indonesia untuk menghadirkan solusi teknologi otomasi video yang efisien, mudah digunakan, dan terjangkau."
         </p>

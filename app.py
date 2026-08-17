@@ -76,7 +76,7 @@ if menu == "Beranda & Studio":
     # --- PANEL STUDIO UTAMA ---
     st.markdown("### 🛠️ Studio Pemrosesan Konten")
     
-    # Banner Promo Pengguna Baru (Tetap Tampil di Atas Form)
+    # Banner Promo Pengguna Baru
     st.markdown("""
     <div class="promo-banner">
         <span style="font-size: 14px; font-weight: bold; color: #4da6ff;">🎁 PROMO SPESIAL PENGGUNA BARU:</span>
@@ -84,7 +84,7 @@ if menu == "Beranda & Studio":
     </div>
     """, unsafe_allow_html=True)
 
-    # Form Studio (Kotak kosong di bawah banner promo sudah dibersihkan total)
+    # Form Studio
     with st.container():
         st.markdown('<div class="card" style="margin-top: 0px;">', unsafe_allow_html=True)
         
@@ -180,4 +180,18 @@ elif menu == "Akun & Profil":
     st.markdown("# 👤 Akun & Profil Founder")
     st.markdown("---")
     st.markdown("### Halo, saya Usman Shidiq")
-    st.write('"Sebagai pengembang yang merintis Paidi.ai dari Malang, visi kami adalah mem
+    st.write('"Sebagai pengembang yang merintis Paidi.ai dari Malang, visi kami adalah memangkas kerumitan teknis produksi video pendek agar setiap kreator bisa fokus penuh pada pesan dan karya mereka."')
+    
+    st.markdown("**Usman Shidiq** · *Founder of Paidi.ai*")
+    st.markdown("📍 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139")
+    st.markdown("📞 Hotline: 083853413171 | ✉️ Email: support@paidi.ai")
+
+# Footer Korporat Standar
+st.markdown("---")
+st.markdown("""
+<div style='text-align: center; color: #888; font-size: 12px; line-height: 1.5;'>
+    <strong>Paidi.ai</strong> — Infrastruktur perangkat lunak rintisan berbasis kecerdasan buatan untuk otomatisasi repurposing video di Indonesia.<br>
+    🏢 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139 | 📞 083853413171 | ✉️ support@paidi.ai<br>
+    © 2026 PT Paidi.ai Group. Didirikan 2026. Hak Cipta Dilindungi Undang-Undang. Engineered with excellence in Malang, Indonesia.
+</div>
+""", unsafe_allow_html=True)

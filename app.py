@@ -18,6 +18,14 @@ st.markdown("""
         border-radius: 12px;
         margin-bottom: 20px;
     }
+    .promo-banner {
+        background: linear-gradient(135deg, rgba(0, 123, 255, 0.25), rgba(40, 167, 69, 0.25));
+        border: 1px solid rgba(0, 123, 255, 0.5);
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
     .profile-card {
         background: rgba(255, 255, 255, 0.08);
         border: 1px solid rgba(0, 123, 255, 0.4);
@@ -56,7 +64,7 @@ if menu == "Beranda & Studio":
     
     # --- SLOGAN PROMOSI UTAMA ---
     st.markdown("""
-        <div style="text-align: center; margin-bottom: 25px;">
+        <div style="text-align: center; margin-bottom: 20px;">
             <h1 style="font-size: 30px; margin-bottom: 8px;">⚡ Paidi.ai Video Studio</h1>
             <h3 style="color: #4da6ff; margin-top: 0; font-size: 18px;">Ekstraksi Konten Sinematik: Dari Video Panjang Menjadi Reels Daya Tinggi 🔗</h3>
             <p style="font-size: 14px; opacity: 0.9; max-width: 600px; margin: 0 auto;">
@@ -65,11 +73,20 @@ if menu == "Beranda & Studio":
         </div>
     """, unsafe_allow_html=True)
     
-    # --- PANEL STUDIO UTAMA (Kotak Kosong Sudah Dihapus Bersih) ---
+    # --- PANEL STUDIO UTAMA ---
     st.markdown("### 🛠️ Studio Pemrosesan Konten")
+    
+    # Banner Promo Pengguna Baru (Tetap Tampil di Atas Form)
+    st.markdown("""
+    <div class="promo-banner">
+        <span style="font-size: 14px; font-weight: bold; color: #4da6ff;">🎁 PROMO SPESIAL PENGGUNA BARU:</span>
+        <p style="font-size: 13px; margin: 4px 0 0 0; opacity: 0.95;">Nikmati <strong>Ekstra 5 Sesi Gratis Tambahan</strong> + Diskon 50% untuk peningkatan paket pertama Anda hari ini!</p>
+    </div>
+    """, unsafe_allow_html=True)
 
+    # Form Studio (Kotak kosong di bawah banner promo sudah dibersihkan total)
     with st.container():
-        st.markdown('<div class="card">', unsafe_allow_html=True)
+        st.markdown('<div class="card" style="margin-top: 0px;">', unsafe_allow_html=True)
         
         st.markdown("#### 🔗 Tautan Sumber Media (YouTube URL)")
         link = st.text_input("YouTube URL", placeholder="https://www.youtube.com/watch?v=...", label_visibility="collapsed")
@@ -163,18 +180,4 @@ elif menu == "Akun & Profil":
     st.markdown("# 👤 Akun & Profil Founder")
     st.markdown("---")
     st.markdown("### Halo, saya Usman Shidiq")
-    st.write('"Sebagai pengembang yang merintis Paidi.ai dari Malang, visi kami adalah memangkas kerumitan teknis produksi video pendek agar setiap kreator bisa fokus penuh pada pesan dan karya mereka."')
-    
-    st.markdown("**Usman Shidiq** · *Founder of Paidi.ai*")
-    st.markdown("📍 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139")
-    st.markdown("📞 Hotline: 083853413171 | ✉️ Email: support@paidi.ai")
-
-# Footer Korporat Standar
-st.markdown("---")
-st.markdown("""
-<div style='text-align: center; color: #888; font-size: 12px; line-height: 1.5;'>
-    <strong>Paidi.ai</strong> — Infrastruktur perangkat lunak rintisan berbasis kecerdasan buatan untuk otomatisasi repurposing video di Indonesia.<br>
-    🏢 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139 | 📞 083853413171 | ✉️ support@paidi.ai<br>
-    © 2026 PT Paidi.ai Group. Didirikan 2026. Hak Cipta Dilindungi Undang-Undang. Engineered with excellence in Malang, Indonesia.
-</div>
-""", unsafe_allow_html=True)
+    st.write('"Sebagai pengembang yang merintis Paidi.ai dari Malang, visi kami adalah mem

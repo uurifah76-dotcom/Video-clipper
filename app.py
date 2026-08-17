@@ -7,7 +7,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# CSS Kustom untuk Tampilan Elegan, Ringkas, dan Rata Tengah
+# CSS Kustom untuk Tampilan Elegan & Rata Tengah
 st.markdown("""
     <style>
     .stApp { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: white; }
@@ -17,14 +17,6 @@ st.markdown("""
         padding: 24px;
         border-radius: 12px;
         margin-bottom: 20px;
-    }
-    .promo-banner {
-        background: linear-gradient(135deg, rgba(0, 123, 255, 0.25), rgba(40, 167, 69, 0.25));
-        border: 1px solid rgba(0, 123, 255, 0.5);
-        padding: 14px 18px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        text-align: center;
     }
     .profile-card {
         background: rgba(255, 255, 255, 0.08);
@@ -59,7 +51,7 @@ st.sidebar.markdown("**Status Sistem:** 🚀 Rintisan Awal (Early Stage)")
 st.sidebar.markdown("**Kredit Anda:** 5 / 10 Sesi")
 st.sidebar.markdown("📍 Malang, Indonesia")
 
-# 1. Halaman Beranda & Studio (Landing Page Ringkas & Profesional)
+# 1. Halaman Beranda & Studio (Landing Page Ringkas & Bersih)
 if menu == "Beranda & Studio":
     
     # --- SLOGAN PROMOSI UTAMA ---
@@ -73,16 +65,8 @@ if menu == "Beranda & Studio":
         </div>
     """, unsafe_allow_html=True)
     
-    # --- PANEL STUDIO UTAMA (Kotak Kosong Dihapus & Diganti Promo Pengguna Baru) ---
+    # --- PANEL STUDIO UTAMA (Kotak Kosong Sudah Dihapus Bersih) ---
     st.markdown("### 🛠️ Studio Pemrosesan Konten")
-    
-    # Banner Promo Diskon Pengguna Baru (Menggantikan area kosong agar bernilai fungsional)
-    st.markdown("""
-    <div class="promo-banner">
-        <span style="font-size: 14px; font-weight: bold; color: #4da6ff;">🎁 PROMO SPESIAL PENGGUNA BARU:</span>
-        <p style="font-size: 13px; margin: 4px 0 0 0; opacity: 0.95;">Nikmati <strong>Ekstra 5 Sesi Gratis Tambahan</strong> + Diskon 50% untuk peningkatan paket pertama Anda hari ini!</p>
-    </div>
-    """, unsafe_allow_html=True)
 
     with st.container():
         st.markdown('<div class="card">', unsafe_allow_html=True)

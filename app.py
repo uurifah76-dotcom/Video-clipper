@@ -59,24 +59,21 @@ st.sidebar.markdown("**Status Sistem:** 🚀 Rintisan Awal (Early Stage)")
 st.sidebar.markdown("**Kredit Anda:** 5 / 10 Sesi")
 st.sidebar.markdown("📍 Malang, Indonesia")
 
-# 1. Halaman Beranda & Studio (Landing Page Ringkas & Bersih)
+# 1. Halaman Beranda & Studio
 if menu == "Beranda & Studio":
     
-    # --- SLOGAN PROMOSI UTAMA ---
+    # --- JUDUL UTAMA STUDIO ---
     st.markdown("""
         <div style="text-align: center; margin-bottom: 20px;">
             <h1 style="font-size: 30px; margin-bottom: 8px;">⚡ Paidi.ai Video Studio</h1>
             <h3 style="color: #4da6ff; margin-top: 0; font-size: 18px;">Ekstraksi Konten Sinematik: Dari Video Panjang Menjadi Reels Daya Tinggi 🔗</h3>
-            <p style="font-size: 14px; opacity: 0.9; max-width: 600px; margin: 0 auto;">
-                Sistem kecerdasan buatan otonom kami memindai durasi penuh, mengidentifikasi segmen paling bernilai tinggi, serta meraciknya dalam format vertikal siap edar secara instan.
-            </p>
         </div>
     """, unsafe_allow_html=True)
     
     # --- PANEL STUDIO UTAMA ---
     st.markdown("### 🛠️ Studio Pemrosesan Konten")
     
-    # Banner Promo Pengguna Baru
+    # Banner Promo Pengguna Baru (TETAP ADA SESUAI PERMINTAAN)
     st.markdown("""
     <div class="promo-banner">
         <span style="font-size: 14px; font-weight: bold; color: #4da6ff;">🎁 PROMO SPESIAL PENGGUNA BARU:</span>
@@ -191,7 +188,4 @@ st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: #888; font-size: 12px; line-height: 1.5;'>
     <strong>Paidi.ai</strong> — Infrastruktur perangkat lunak rintisan berbasis kecerdasan buatan untuk otomatisasi repurposing video di Indonesia.<br>
-    🏢 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139 | 📞 083853413171 | ✉️ support@paidi.ai<br>
-    © 2026 PT Paidi.ai Group. Didirikan 2026. Hak Cipta Dilindungi Undang-Undang. Engineered with excellence in Malang, Indonesia.
-</div>
-""", unsafe_allow_html=True)
+    🏢 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139 | 📞 083853413171 |

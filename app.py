@@ -1,4 +1,6 @@
 import streamlit as st
+import os
+import subprocess
 
 # Konfigurasi Halaman
 st.set_page_config(
@@ -6,6 +8,46 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded"
 )
+
+# --- FUNGSI BACKEND OTOMATISASI CLIPPING YOUTUBE ---
+def process_youtube_clip(youtube_url, start_time="00:00:10", end_time="00:00:40", output_filename="output_clip.mp4"):
+    """
+    Fungsi untuk mengunduh segmen video YouTube dan memotongnya
+    menggunakan yt-dlp dan ffmpeg secara efisien.
+    """
+    try:
+        os.makedirs("/tmp", exist_ok=True)
+        temp_input = "/tmp/temp_full_video.mp4"
+        output_path = f"/tmp/{output_filename}"
+
+        # 1. Unduh resolusi rendah (360p) untuk menghemat RAM server
+        download_command = [
+            "yt-dlp",
+            "-f", "best[height<=360]", 
+            "-o", temp_input,
+            youtube_url
+        ]
+        subprocess.run(download_command, check=True)
+
+        # 2. Potong video menggunakan FFmpeg berdasarkan timestamp
+        ffmpeg_command = [
+            "ffmpeg",
+            "-y",
+            "-ss", str(start_time),
+            "-i", temp_input,
+            "-to", str(end_time),
+            "-c:v", "libx264",
+            "-c:a", "aac",
+            "-strict", "experimental",
+            output_path
+        ]
+        subprocess.run(ffmpeg_command, check=True)
+
+        return output_path
+
+    except Exception as e:
+        print(f"Terjadi kesalahan saat memproses video: {e}")
+        return None
 
 # CSS Kustom untuk Tampilan Elegan & Rata Tengah
 st.markdown("""
@@ -55,7 +97,7 @@ menu = st.sidebar.radio(
 )
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("**Status Sistem:** 🚀 Rintisan Awal (Early Stage)")
+st.sidebar.markdown("**Status Sistem:** 🚀 Produksi Aktif")
 st.sidebar.markdown("**Kredit Anda:** 5 / 10 Sesi")
 st.sidebar.markdown("📍 Malang, Indonesia")
 
@@ -73,7 +115,7 @@ if menu == "Beranda & Studio":
     # --- PANEL STUDIO UTAMA ---
     st.markdown("### 🛠️ Studio Pemrosesan Konten")
     
-    # Banner Promo Pengguna Baru (TETAP ADA DI ATAS FORM)
+    # Banner Promo Pengguna Baru
     st.markdown("""
     <div class="promo-banner">
         <span style="font-size: 14px; font-weight: bold; color: #4da6ff;">🎁 PROMO SPESIAL PENGGUNA BARU:</span>
@@ -81,7 +123,7 @@ if menu == "Beranda & Studio":
     </div>
     """, unsafe_allow_html=True)
 
-    # Form Studio Input (Stabil & Aman dari Syntax Error)
+    # Form Studio Input & Eksekusi Otomasi Klip
     st.markdown("#### 🔗 Tautan Sumber Media (YouTube URL)")
     link = st.text_input("YouTube URL", placeholder="https://www.youtube.com/watch?v=...", label_visibility="collapsed")
     
@@ -97,8 +139,24 @@ if menu == "Beranda & Studio":
     
     if st.button("✨ Eksekusi Analisis Otonom", type="primary"):
         if link:
-            st.info("Menghubungkan ke server YouTube untuk membaca metadata video...")
-            st.success("Video Berhasil Dideteksi!")
+            with st.spinner("🚀 Sistem AI sedang memindai dan memotong klip terbaik dari YouTube untuk Anda..."):
+                # Memanggil fungsi pemrosesan video nyata
+                hasil_klip = process_youtube_clip(link, start_time="00:00:10", end_time="00:00:40")
+                
+                if hasil_klip and os.path.exists(hasil_klip):
+                    st.success("🎉 Klip video sinematik Anda berhasil dibuat!")
+                    st.video(hasil_klip)
+                    
+                    # Tombol Unduh
+                    with open(hasil_klip, "rb") as file:
+                        st.download_button(
+                            label="📥 Unduh Klip Hasil (MP4)",
+                            data=file,
+                            file_name="paidi_ai_reels_hasil.mp4",
+                            mime="video/mp4"
+                        )
+                else:
+                    st.error("⚠️ Gagal memproses video. Pastikan tautan YouTube aktif dan dapat diakses.")
         else:
             st.warning("⚠️ Silakan masukkan tautan YouTube terlebih dahulu!")
 
@@ -154,7 +212,7 @@ if menu == "Beranda & Studio":
 elif menu == "Kredit & Paket":
     st.markdown("# 💳 Kredit & Paket Berlangganan")
     st.markdown("---")
-    st.write("Sisa sesi pemrosesan AI Anda saat ini adalah **5 / 10 Sesi** (Status Rintisan Awal).")
+    st.write("Sisa sesi pemrosesan AI Anda saat ini adalah **5 / 10 Sesi**.")
     st.button("Top Up Sesi Tambahan")
 
 elif menu == "Program Affiliate":
@@ -171,3 +229,13 @@ elif menu == "Akun & Profil":
     st.markdown("**Usman Shidiq** · *Founder of Paidi.ai*")
     st.markdown("📍 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139")
     st.markdown("📞 Hotline: 083853413171 | ✉️ Email: support@paidi.ai")
+
+# Footer Korporat
+st.markdown("---")
+st.markdown("""
+<div style='text-align: center; color: #888; font-size: 12px; line-height: 1.5;'>
+    <strong>Paidi.ai</strong> — Infrastruktur perangkat lunak rintisan berbasis kecerdasan buatan untuk otomatisasi repurposing video di Indonesia.<br>
+    🏢 Ruko WOW Sawojajar, Kec. Kedungkandang, Kota Malang, Jawa Timur 65139 | 📞 083853413171 | ✉️ support@paidi.ai<br>
+    © 2026 PT Paidi.ai Group. Didirikan 2026. Hak Cipta Dilindungi Undang-Undang. Engineered with excellence in Malang, Indonesia.
+</div>
+""", unsafe_allow_html=True)
